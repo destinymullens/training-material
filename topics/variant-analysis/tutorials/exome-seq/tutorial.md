@@ -8,31 +8,25 @@ tutorial_name: exome-seq
 
 Exome sequencing means that all protein-coding genes in a genome are sequenced.
 
-In Humans, there are ~180,000 exons that makes up 1% of the human genome which
-contain ~30 million base pairs. Mutations in the exome have usually a higher
-impact and more severe consequences, than in the remaining 99% of the genome.
+In humans there are ~180,000 exons that make up 1% of the human genome which
+contains ~30 million base pairs. Mutations in the exome usually have a higher
+impact and more severe consequences thanthe remaining 99% of the genome.
 
-With exome sequencing, one can identify genetic variation that is responsible
-for both Mendelian and common diseases without the high costs associated with
-whole-genome sequencing. Indeed, exome sequencing is the most efficient way to
-identify the genetic variants in all of an individual's genes. Exome sequencing
-is cheaper also than whole-genome sequencing. With a high coverage rate of
-100+ DP, 98% of all exons are covered.
+Exome sequencing is the most efficient way to identify genetic variation responsible for Medelian and common diseases without the high cost associated with whole-genome sequencing. Exome sequencing has a high coverage rate with 100+ DP, 98% of all exomes are covered.
 
-Items where exome sequencing can't identify genetic variation in:
+Where exome sequencing can't identify genetic variation:
 
 - *All genes*
 
 >  Not all genes are in your exon data, especially those buried in stretches of
->  repeats out towards the chromosome tips, aren’t part of exome sequencing chips
+>  repeats out towards the chromosome tips are not apart of exome sequencing chips
 
-- The handful of *genes that reside in mitochondria*, rather than in the nucleus
+- The handful of *genes that residing in the mitochondria*, rather than the nucleus
 - *"Structural variants"* such as translocations and inversions, that move or
-flip DNA but don’t alter the base sequence.
-- *Triplet repeat disorders*, such as Huntington’s disease and fragile X syndrome
-can't be detected.
-- Other *copy number variants* will remain beneath the radar, for they too don’t
-change the sequence, but can increase disease risk.
+flip DNA but do not alter the base sequence.
+- *Triplet repeat disorders*, such as Huntington’s disease and fragile X syndrome,
+ca not be detected.
+- Other *copy number variants* will remain beneath the radar because they also do not change the sequence, but can increase disease risk.
 - *Introns*
 
 >  A mutation that jettisons a base in an intron can have dire consequences:
@@ -44,9 +38,9 @@ change the sequence, but can increase disease risk.
 - *"Uniparental disomy"*
 
 >  Two mutations from one parent, rather than one from each, appear the same in
->  an exome screen: the kid has two mutations. But whether mutations come from
->  only mom, only dad, or one from each has different consequences for risk to
->  future siblings. In fact, a case of UPD reported in 1988 led to discovery of
+>  an exome screen: the child has two mutations. If both the mutations come from
+>  mom or dad, or one mutation from each parent has different consequences for risk 
+>  to future siblings. A case of UPD reported in 1988 led to discovery of
 >  the cystic fibrosis gene.
 
 - *Control sequences*
@@ -60,10 +54,10 @@ change the sequence, but can increase disease risk.
 - *Epigenetic changes*
 
 >  Environmental factors can place shielding methyl groups directly onto DNA,
->  blocking expression of certain genes. Starvation during the “Dutch Hunger
->  Winter” of 1945, for example, is associated with schizophrenia in those who
->  were fetuses at the time, due to methylation of certain genes. Exome
->  sequencing picks up DNA sequences – not gene expression
+>  blocking expression of certain genes. For example, Starvation during the “Dutch 
+>  Hunger Winter” of 1945 is associated with schizophrenia in those who were
+>  fetuses at the time, due to methylation of certain genes. Exome sequencing
+>  picks up DNA sequences – not gene expression
 
 - *Gene-gene (epistatic) interactions*
 
@@ -71,7 +65,7 @@ change the sequence, but can increase disease risk.
 >  same single-gene disease suffer to a different extent. For example, a child
 >  with severe spinal muscular atrophy, in which an abnormal protein shortens
 >  axons of motor neurons, may have a brother who also inherits SMA but has a
->  milder case thanks to a variant of a second gene that extends axons.
+>  milder case due to a variant of a second gene that extends axons.
 >  Computational tools will need to sort out networks of interacting genes
 >  revealed in exome sequencing.
 
@@ -98,13 +92,11 @@ We will follow the pipeline:
 
 # Data-preprocessing
 
-In this tutorial, a child has a yet unknown disease. His parents are healthy.
-We will try to identify the genetic variation that is responsible for the disease
-using the exome sequencing data from both parents and the child.
+In this tutorial, a child has an unknown disease. His parents are healthy.
+We will try to identify the genetic variation responsible for the disease
+using exome sequencing data from both parents and the child.
 
-Most of the data pre-processing have already be done on the raw exome sequencing.
-The raw exome sequences were mapped on `hg19` version of the human genome. So,
-for each family member, we will start with one BAM file with mapping results.
+Most of the data pre-processing has already been completed for the raw exome sequencing. The raw exome sequences were mapped on `hg19` version of the human genome. So, for each family member, we will start with one BAM file with mapping results.
 
 > ### {% icon hands_on %} Hands-on: Data pre-processing
 >
@@ -118,9 +110,9 @@ for each family member, we will start with one BAM file with mapping results.
 >     3. Save it
 > 2. Import the reference genome {% icon tool %}:
 >    1. Go on **Data Libraries** in **Shared data** (top panel on Galaxy's interface)
->    2. Click on **Training Data**
->    3. Select `hg19`
->    4. Click on **Import selected datasets into history** (just below the top panel)
+>    2. Click on **Genomes + annotations** then click on **Genomes**
+>    3. Select `hg19.fa`
+>    4. Click on **To History - as Datasets ** (just below the top panel)
 >    5. Import it
 >    6. Convert it from 2bit to fasta with **twoBitToFa** from **Convert Formats**
 > 2. Follow the next steps for father data and then apply the generated workflow on other datasets
@@ -139,7 +131,7 @@ substitution events) smaller than the length of a short-read sequencing alignmen
 
 > ### {% icon hands_on %} Hands-on: Generating FreeBayes calls
 >
-> 1. Select **FreeBayes** in the tool menu (left panel of Galaxy's interface)
+> 1. Select **FreeBayes** under Variant Calling in the tool menu (left panel of Galaxy's interface)
 > 2. Run **FreeBayes**{% icon tool %}:
 >    1. Load reference genome from local cache
 >    2. Select the father data as the BAM dataset
@@ -174,7 +166,7 @@ to simplify the variant representation.
 
 > ### {% icon tip %} Tip:
 >
-> Have a look at the examples that can help you construct the correct expression for the Filter criteria.
+> Looking at the examples that can help you construct the correct expression for the Filter criteria.
 {: .tip}
 
 ## Annotate your variants
@@ -196,7 +188,7 @@ the NCBI database of genetic variation and then `hg19` database with **SnpEff**.
 >
 {: .hands_on}
 
-Look at your **"INFO"** column again in the generated VCF file. You will get some gene names for your variants, but also a predicted impact and if your variant is located inside of a known gene.
+Look at your **"INFO"** column in the generated VCF file. You will get some gene names for your variants, but also a predicted impact and if your variant is located inside of a known gene.
 
 > ### {% icon tip %} Tip:
 >
@@ -250,12 +242,12 @@ Now that we have an annotated VCF file it is time to peek inside our variation d
 >
 {: .hands_on}
 
-Either way you have now a database with all your variants, with pedigree
-relations, additional annotations and most importantly its fast to search.
+Either way you have now a database with all your variants with pedigree
+relations, additional annotations and most importantly it is fast to search.
 > ### {% icon tip %} Tip:
 >
 > Have a look at all different **Gemini** tools and run as many tools as possible on
-> your GEMINI databases. Try to get a feeling of what is possible with a variant
+> your GEMINI databases and try to get a feeling of what is possible with a variant
 > database in GEMINI.
 {: .tip}
 
